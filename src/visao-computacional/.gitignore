@@ -1,0 +1,11 @@
+# Outputs de treinamento YOLOv8
+runs
+
+# Modelos treinados (exceto o dataset)
+*.pt
+*.pth
+*.onnx
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+__pycache__

@@ -1,0 +1,44 @@
+{
+  "name": "argos-frontend",
+  "version": "0.1.0",
+  "description": "Frontend do sistema de controle de acesso Argos",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3001",
+    "build": "next build",
+    "start": "next start -p 3001",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix"
+  },
+  "keywords": [
+    "access-control",
+    "dashboard",
+    "nextjs",
+    "iot",
+    "mqtt",
+    "rfid"
+  ],
+  "author": "iotrain",
+  "license": "ISC",
+  "dependencies": {
+    "mqtt": "^5.3.4",
+    "next": "^14.2.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "recharts": "^2.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "autoprefixer": "^10.4.17",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^14.2.0",
+    "postcss": "^8.4.33",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

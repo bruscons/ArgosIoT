@@ -1,0 +1,251 @@
+# ============================================================================
+# ARQUIVOS COMPILADOS E OBJETOS
+# ============================================================================
+
+# Deploy automatico do server
+deploy-projeto.sh
+
+# Objetos compilados C/C++
+*.slo
+*.lo
+*.o
+*.obj
+
+# Headers pré-compilados
+*.gch
+*.pch
+
+# Bibliotecas dinâmicas
+*.so
+*.dylib
+*.dll
+
+# Módulos Fortran
+*.mod
+*.smod
+
+# Bibliotecas estáticas
+*.lai
+*.la
+*.a
+*.lib
+
+# Executáveis
+*.exe
+*.out
+*.app
+
+# Arquivos de pré-requisitos
+*.d
+
+# ============================================================================
+# ARDUINO E PLATFORMIO
+# ============================================================================
+
+# Diretórios de build do Arduino
+**/build/
+**/.build/
+
+# Diretórios do PlatformIO
+**/.pio/
+**/.pioenvs/
+**/.piolibdeps/
+**/lib_deps/
+
+# Cache do Arduino CLI
+**/.arduino/
+
+# ============================================================================
+# NODE.JS E NPM
+# ============================================================================
+
+# Dependências do Node
+**/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+**/package-lock.json
+
+# Arquivos de cache
+.npm
+.eslintcache
+.node_repl_history
+
+# Arquivos de build do frontend
+**/dist/
+**/build/
+
+# Variáveis de ambiente do Node
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ============================================================================
+# RUST
+# ============================================================================
+
+# Diretório de build do Rust
+**/target/
+
+# Arquivo de lock do Cargo (descomente se for biblioteca)
+# Cargo.lock
+
+# Arquivos de backup do Rust
+**/*.rs.bk
+
+# ============================================================================
+# PYTHON
+# ============================================================================
+
+# Bytecode compilado
+**/__pycache__/
+*.py[cod]
+*$py.class
+
+# Ambientes virtuais
+**/venv/
+**/env/
+**/ENV/
+**/.venv/
+
+# ============================================================================
+# BANCOS DE DADOS
+# ============================================================================
+
+# Arquivos de banco de dados
+*.db
+*.sqlite
+*.sqlite3
+*.csv
+*.tsv
+*.xls
+# *.xlsx
+
+# Dumps de banco
+*.dump
+
+# ============================================================================
+# IDES E EDITORES
+# ============================================================================
+
+# Visual Studio Code
+**/.vscode/
+*.code-workspace
+
+# JetBrains IDEs (CLion, WebStorm, etc)
+**/.idea/
+*.iml
+*.iws
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# ============================================================================
+# SISTEMAS OPERACIONAIS
+# ============================================================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+.directory
+.Trash-*
+
+# ============================================================================
+# WOKWI E SIMULADORES
+# ============================================================================
+
+# Arquivos temporários do Wokwi (se houver)
+*.wokwi-tmp
+wokwi-project.txt
+
+# ============================================================================
+# LOGS E ARQUIVOS TEMPORÁRIOS
+# ============================================================================
+
+# Logs gerais
+*.log
+**/logs/
+*.log.*
+
+# Arquivos temporários
+**/tmp/
+**/temp/
+*.tmp
+*.temp
+*.bak
+*.swp
+*.cache
+
+# Dumps e core dumps
+*.dump
+core
+
+# ============================================================================
+# CERTIFICADOS E CHAVES (SEGURANÇA)
+# ============================================================================
+
+# Nunca commitar chaves privadas ou certificados
+*.pem
+*.key
+*.cert
+*.crt
+*.p12
+*.pfx
+
+# Arquivos de configuração com credenciais sensíveis
+secrets.json
+credentials.json
+.credentials
+
+# ============================================================================
+# DOCUMENTAÇÃO GERADA
+# ============================================================================
+
+# Doxygen
+**/html/
+**/latex/
+**/doc/html/
+**/doc/latex/
+
+# ============================================================================
+# TESTES E COBERTURA
+# ============================================================================
+
+# Cobertura de código
+**/coverage/
+*.cover
+.coverage
+.coverage.*
+**/htmlcov/
+
+# Resultados de testes
+**/.pytest_cache/
+**/test-results/
+
+# ============================================================================
+# Outros
+# ============================================================================

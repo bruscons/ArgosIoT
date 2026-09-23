@@ -1,0 +1,15 @@
+{
+  "name": "MFRC522 RFID Reader",
+  "author": "Richard Alves",
+  "pins": [
+    "SDA",
+    "SCK",
+    "MOSI",
+    "MISO",
+    "IRQ",
+    "GND",
+    "RST",
+    "3.3V"
+  ],
+  "controls": []
+}
