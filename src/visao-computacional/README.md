@@ -1,19 +1,19 @@
-# Visão Computacional - Sistema de Contagem Conectado (YOLOv8m)
+# Computer Vision - Connected Counting System (YOLOv8m)
 
-Este diretório contém os scripts e recursos necessários para o módulo de visão computacional do projeto. O sistema utiliza o modelo oficial **YOLOv8m** (Medium) para detecção robusta de pessoas, implementando pré-processamento de imagem para ambientes com baixa luminosidade e integração via API para envio de dados em tempo real.
+This directory contains the scripts and resources needed for the project's computer vision module. The system uses the official **YOLOv8m** (Medium) model for robust person detection, implementing image pre-processing for low-light environments and API integration to send data in real time.
 
-## Descrição do Modelo
+## Model Description
 
-O sistema baseia-se na arquitetura **YOLOv8 (You Only Look Once version 8)** da Ultralytics, utilizando pesos pré-treinados no dataset COCO.
+The system is based on the **YOLOv8 (You Only Look Once version 8)** architecture from Ultralytics, using weights pre-trained on the COCO dataset.
 
-* **Modelo:** Utiliza o arquivo `yolov8m.pt` (Medium). Esta versão foi escolhida por oferecer um equilíbrio superior entre precisão e inteligência em comparação à versão Nano, sendo capaz de distinguir pessoas de outros objetos com maior eficácia sem necessidade de re-treinamento.
-* **Pré-processamento (CLAHE):** O script aplica *Contrast Limited Adaptive Histogram Equalization* em cada frame antes da inferência. Isso nivela a iluminação digitalmente, permitindo detecções precisas mesmo em cenários de iluminação complexa ou escassa.
-* **Lógica de Contagem Híbrida:** O sistema utiliza pontos de referência distintos para maximizar a precisão nas bordas da imagem:
-    * **Entrada (Linha Azul):** Baseada no **centróide** (centro do corpo).
-    * **Saída (Linha Vermelha):** Baseada na **base da bounding box** (pés), garantindo a contagem antes que o indivíduo saia totalmente do quadro.
-* **Conectividade:** O sistema envia requisições HTTP (POST) para um backend a cada evento de contagem, utilizando processamento em *threads* para evitar latência no vídeo.
+* **Model:** Uses the `yolov8m.pt` (Medium) weights file. This version was chosen for offering a better balance between accuracy and intelligence compared to the Nano version, being able to distinguish people from other objects more effectively without requiring re-training.
+* **Pre-processing (CLAHE):** The script applies *Contrast Limited Adaptive Histogram Equalization* to each frame before inference. This digitally levels out lighting, enabling accurate detections even in complex or low-light scenarios.
+* **Hybrid Counting Logic:** The system uses distinct reference points to maximize accuracy at the edges of the frame:
+    * **Entry (Blue Line):** Based on the **centroid** (center of the body).
+    * **Exit (Red Line):** Based on the **base of the bounding box** (feet), ensuring the count happens before the person fully leaves the frame.
+* **Connectivity:** The system sends HTTP (POST) requests to a backend on every counting event, using thread-based processing to avoid video latency.
 
-## Estrutura Esperada das Pastas
+## Expected Folder Structure
 
 ```
 src/
@@ -24,66 +24,67 @@ src/
     ├── yolov8m.pt
 ```
 
-## Como Baixar Pesos Pré-treinados (`yolov8m.pt`)
+## How to Download Pre-trained Weights (`yolov8m.pt`)
 
-O sistema foi desenvolvido para operar com o modelo oficial, dispensando datasets externos.
+The system was built to work with the official model, with no need for external datasets.
 
-**Método Automático:**
-Ao executar o script pela primeira vez, a biblioteca `ultralytics` detectará a ausência do modelo e realizará o download do `yolov8m.pt` automaticamente.
+**Automatic Method:**
+The first time you run the script, the `ultralytics` library will detect that the model is missing and download `yolov8m.pt` automatically.
 
-**Método Manual:**
-Caso prefira baixar manualmente ou o download automático falhe:
-[Download yolov8m.pt (Github Releases)](https://github.com/ultralytics/assets/releases/download/v8.2.0/yolov8m.pt)
+**Manual Method:**
+If you'd rather download it manually, or if the automatic download fails:
+[Download yolov8m.pt (GitHub Releases)](https://github.com/ultralytics/assets/releases/download/v8.2.0/yolov8m.pt)
 
-Coloque o arquivo baixado na raiz deste diretório.
+Place the downloaded file at the root of this directory.
 
-## Instruções de Configuração e Uso
+## Setup and Usage Instructions
 
-Ao iniciar o script, o sistema entrará em modo de calibração visual:
+When the script starts, the system enters visual calibration mode:
 
-1.  **Definição de Linhas Virtuais:**
-    * **1º Clique:** Define a altura da **Linha Azul** (Entrada/Topo).
-    * **2º Clique:** Define a altura da **Linha Vermelha** (Saída/Baixo).
-2.  **Início da Operação:** Pressione `ESPAÇO` para confirmar a geometria e iniciar o monitoramento.
-3.  **Integração API:** Verifique a variável `URL_API` no código para apontar para o endpoint correto do seu backend (ex: `http://localhost:3000/api/room-occupancy`).
+1.  **Defining Virtual Lines:**
+    * **1st Click:** Sets the height of the **Blue Line** (Entry/Top).
+    * **2nd Click:** Sets the height of the **Red Line** (Exit/Bottom).
+2.  **Starting Operation:** Press `SPACE` to confirm the geometry and start monitoring.
+3.  **API Integration:** Check the `URL_API` variable in the code to point to your backend's correct endpoint (e.g., `http://localhost:3000/api/room-occupancy`).
 
 
-## Lógica de Funcionamento Detalhada
+## Detailed Operating Logic
 
-O sistema opera em um ciclo contínuo de captura, inferência e análise geométrica. A estabilidade da contagem é garantida por uma abordagem híbrida de rastreamento:
+The system runs in a continuous capture, inference, and geometric-analysis cycle. Counting stability is ensured by a hybrid tracking approach:
 
-1.  **Pré-processamento (Visão Noturna Digital):**
-    * Cada frame capturado passa por um filtro **CLAHE** (Contrast Limited Adaptive Histogram Equalization). A imagem é convertida para o espaço de cor LAB, onde a luminosidade é equalizada para destacar contornos em ambientes escuros, e depois reconvertida para BGR.
+1.  **Pre-processing (Digital Night Vision):**
+    * Each captured frame passes through a **CLAHE** (Contrast Limited Adaptive Histogram Equalization) filter. The image is converted to the LAB color space, where brightness is equalized to bring out contours in dark environments, then converted back to BGR.
 
-2.  **Rastreamento (Tracking):**
-    * O modelo **YOLOv8m** detecta objetos da classe `0` (Pessoa).
-    * O algoritmo **ByteTrack** gerencia a persistência dos IDs, garantindo que uma pessoa mantenha o mesmo número identificador mesmo se houver falhas momentâneas na detecção ou oclusão parcial.
+2.  **Tracking:**
+    * The **YOLOv8m** model detects objects of class `0` (Person).
+    * The **ByteTrack** algorithm manages ID persistence, ensuring a person keeps the same ID even if there are momentary detection failures or partial occlusion.
 
-3.  **Geometria de Contagem Híbrida:**
-    Diferente de sistemas tradicionais que usam apenas o centro do objeto, este projeto utiliza pontos de referência dinâmicos para corrigir erros de perspectiva na saída:
+3.  **Hybrid Counting Geometry:**
+    Unlike traditional systems that only use the object's center, this project uses dynamic reference points to correct perspective errors on exit:
     
-    * **Entrada (Linha Azul):** Monitora o **Centróide** (Centro geométrico da caixa).
-        * *Gatilho:* O centro cruza a linha de cima para baixo com velocidade negativa validada.
+    * **Entry (Blue Line):** Monitors the **Centroid** (geometric center of the box).
+        * *Trigger:* The center crosses the line top-to-bottom with a validated negative velocity.
     
-    * **Saída (Linha Vermelha):** Monitora a **Base** (Coordenada Y inferior / Pés).
-        * *Motivo:* Em ângulos de câmera superiores, os pés cruzam a linha de saída antes que o corpo desapareça do quadro.
-        * *Gatilho:* A base cruza a linha vermelha, com uma trava lógica que ignora movimentos de subida (reentrada) para evitar falsos positivos.
+    * **Exit (Red Line):** Monitors the **Base** (bottom Y coordinate / feet).
+        * *Reason:* At overhead camera angles, the feet cross the exit line before the body disappears from the frame.
+        * *Trigger:* The base crosses the red line, with a logic lock that ignores upward movements (re-entry) to avoid false positives.
 
-4.  **Comunicação Assíncrona (Non-blocking):**
-    * Ao validar uma contagem, o script dispara uma *Thread* isolada para enviar o payload JSON ao backend. Isso isola o processo de I/O (rede), impedindo que oscilações na internet congelem o processamento de vídeo.
+4.  **Asynchronous (Non-blocking) Communication:**
+    * Once a count is validated, the script fires off an isolated thread to send the JSON payload to the backend. This isolates the I/O (network) process, preventing internet hiccups from freezing video processing.
 
-## Requisitos e Dependências
+## Requirements and Dependencies
 
-O projeto requer Python 3.8+ e as seguintes bibliotecas. A biblioteca `requests` foi adicionada para a comunicação com o servidor.
+The project requires Python 3.8+ and the following libraries. The `requests` library was added for communication with the server.
 
-Principais Dependências:
+Main Dependencies:
 
--   **ultralytics** (Core do YOLO e Tracking ByteTrack)
--   **opencv-python** (Processamento de vídeo e CLAHE)
--   **numpy** (Cálculos matemáticos)
--   **requests** (Envio de dados HTTP)
+-   **ultralytics** (Core of YOLO and ByteTrack tracking)
+-   **opencv-python** (Video processing and CLAHE)
+-   **numpy** (Mathematical calculations)
+-   **requests** (Sending HTTP data)
 
-Comando de Instalação:
+Install Command:
 
 ```bash
 pip install ultralytics opencv-python numpy requests
+```

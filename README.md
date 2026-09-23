@@ -90,6 +90,11 @@ Overall, the project demonstrates the feasibility of integrating embedded system
 
 [Demo Video](https://www.youtube.com/watch?v=zPGXsDBjmhk)
 
+## 📰 Media Coverage
+
+This project was developed as part of a broader partnership between Inteli and TIC Trens, the concessionaire that operates São Paulo's Line 7-Rubi, aimed at building AI and IoT solutions for railway operational security. The partnership was covered by Exame magazine:
+
+[Trem de São Paulo vira laboratório de IA em parceria da TIC Trens e Inteli](https://exame.com/tecnologia/trem-de-sao-paulo-vira-laboratorio-de-ia-em-parceria-da-tic-trens-e-inteli/) (Exame, December 2025)
 
 ## 📁 Folder Structure
 
@@ -142,6 +147,21 @@ To replicate the entire **Argos** project, including installation, device config
     
 * 0.1.0 - 10/24/2025 - Documentation of the offline prototype and construction of the circuit fundamentals via Wokwi.
     
+
+## My Contribution
+
+This was a collaborative academic project.
+
+My responsibilities included:
+
+* Built and trained the computer vision module in `src/visao-computacional/`, a YOLOv8m person detection pipeline with CLAHE preprocessing for low light and ByteTrack for keeping IDs stable across frames.
+* Implemented the hybrid counting logic used to flag unauthorized people and track how many people are in each room, using the centroid for entries and the bounding box base for exits.
+* Integrated this module with the backend built by the rest of the team, sending detection and occupancy events to the API in real time.
+* Helped write the project documentation, mainly the parts explaining the technology behind the system.
+
+I was solely responsible for the computer vision layer, from building the detection and tracking model to wiring it into the rest of the system. The embedded hardware (ESP32, RFID, keypad, physical case) was designed and built by other team members.
+
+RFID and a password only confirm that a badge was scanned. They don't confirm how many people are actually in the room. This module gave the project an independent, camera-based count to check against the access logs.
 
 ## 📋 License
 

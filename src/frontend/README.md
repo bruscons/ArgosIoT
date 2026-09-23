@@ -1,214 +1,214 @@
 # IoTrain Frontend
 
-Frontend do sistema de controle de acesso IoTrain desenvolvido com Next.js 14.
+Frontend for the IoTrain access control system, built with Next.js 14.
 
-## Descrição
+## Description
 
-Interface web para visualização e monitoramento do sistema de controle de acesso em tempo real, incluindo dashboard interativo, relatórios históricos e monitoramento de dispositivos IoT (ESP32).
+Web interface for viewing and monitoring the access control system in real time, including an interactive dashboard, historical reports, and IoT device monitoring (ESP32).
 
-## Funcionalidades
+## Features
 
--  **Tela de Login**: Autenticação de usuários (sem backend por enquanto)
--  **Dashboard**: Visualização em tempo real de acessos via MQTT
--  **Gráficos em Tempo Real**: Acompanhamento de acessos permitidos, negados e erros
--  **Monitoramento de Dispositivos**: Status dos dispositivos ESP32 conectados
--  **Relatórios**: Histórico completo de acessos com filtros avançados
--  **Atualização em Tempo Real**: Comunicação via MQTT para eventos instantâneos
+-  **Login Screen**: User authentication (no backend yet)
+-  **Dashboard**: Real-time access visualization via MQTT
+-  **Real-Time Charts**: Tracking of granted, denied, and error access events
+-  **Device Monitoring**: Status of connected ESP32 devices
+-  **Reports**: Full access history with advanced filters
+-  **Real-Time Updates**: MQTT-based communication for instant events
 
-## Instalação
+## Installation
 
-### Pré-requisitos
+### Prerequisites
 
 - Node.js 18+ 
-- npm ou yarn
+- npm or yarn
 
-### Instalação de Dependências
+### Installing Dependencies
 
 ```bash
 npm install
 ```
 
-## Configuração
+## Configuration
 
-Crie um arquivo `.env.local` na raiz do projeto (`src/frontend/.env.local`) com as seguintes variáveis:
+Create a `.env.local` file at the project root (`src/frontend/.env.local`) with the following variables:
 
 ```env
-# URL da API Backend
-# Exemplo local: http://localhost:3000
-# Exemplo produção: http://159.223.199.233:3000
+# Backend API URL
+# Local example: http://localhost:3000
+# Production example: http://159.223.199.233:3000
 NEXT_PUBLIC_API_URL=http://localhost:3000
 
-# URL do Broker MQTT (WebSocket)
-# Para HiveMQ Cloud com SSL: wss://[broker].s1.eu.hivemq.cloud:8884
-# Para HiveMQ Cloud sem SSL: ws://[broker].s1.eu.hivemq.cloud:8883
-# Exemplo local: ws://localhost:8083
+# MQTT Broker URL (WebSocket)
+# For HiveMQ Cloud with SSL: wss://[broker].s1.eu.hivemq.cloud:8884
+# For HiveMQ Cloud without SSL: ws://[broker].s1.eu.hivemq.cloud:8883
+# Local example: ws://localhost:8083
 NEXT_PUBLIC_MQTT_URL=wss://d8375c5d1154430bbaedae91fd4e1632.s1.eu.hivemq.cloud:8884
 
-# Credenciais MQTT (opcional, mas recomendado para produção)
+# MQTT credentials (optional, but recommended for production)
 NEXT_PUBLIC_MQTT_USERNAME=Argos
 NEXT_PUBLIC_MQTT_PASSWORD=ioTrain*99!
 ```
 
-**Nota**: Você pode usar o arquivo `env.example` como base. Copie-o para `.env.local` e ajuste os valores conforme seu ambiente.
+**Note**: You can use the `env.example` file as a base. Copy it to `.env.local` and adjust the values for your environment.
 
-### Variáveis de Ambiente
+### Environment Variables
 
-| Variável | Descrição | Obrigatório | Padrão |
+| Variable | Description | Required | Default |
 |----------|-----------|-------------|--------|
-| `NEXT_PUBLIC_API_URL` | URL base do backend API | Sim | `http://localhost:3000` |
-| `NEXT_PUBLIC_MQTT_URL` | URL do broker MQTT (WebSocket) | Sim | `ws://localhost:8083` |
-| `NEXT_PUBLIC_MQTT_USERNAME` | Username para autenticação MQTT | Não | (vazio) |
-| `NEXT_PUBLIC_MQTT_PASSWORD` | Password para autenticação MQTT | Não | (vazio) |
+| `NEXT_PUBLIC_API_URL` | Base backend API URL | Yes | `http://localhost:3000` |
+| `NEXT_PUBLIC_MQTT_URL` | MQTT broker URL (WebSocket) | Yes | `ws://localhost:8083` |
+| `NEXT_PUBLIC_MQTT_USERNAME` | Username for MQTT authentication | No | (empty) |
+| `NEXT_PUBLIC_MQTT_PASSWORD` | Password for MQTT authentication | No | (empty) |
 
-**Importante**: 
-- Todas as variáveis devem começar com `NEXT_PUBLIC_` para serem acessíveis no cliente
-- Para HiveMQ Cloud, use `wss://` (WebSocket Secure) na porta 8884 para SSL
-- Para desenvolvimento local sem SSL, use `ws://` na porta 8083
+**Important**: 
+- All variables must start with `NEXT_PUBLIC_` to be accessible on the client
+- For HiveMQ Cloud, use `wss://` (WebSocket Secure) on port 8884 for SSL
+- For local development without SSL, use `ws://` on port 8083
 
-## Executando
+## Running
 
-### Desenvolvimento
+### Development
 
 ```bash
 npm run dev
 ```
 
-A aplicação estará disponível em `http://localhost:3001`
+The application will be available at `http://localhost:3001`
 
-**Nota**: O frontend roda na porta **3001** para não conflitar com o backend que roda na porta **3000**.
+**Note**: The frontend runs on port **3001** to avoid conflicting with the backend, which runs on port **3000**.
 
-### Produção
+### Production
 
 ```bash
 npm run build
 npm start
 ```
 
-## Estrutura de Pastas
+## Folder Structure
 
 ```
 src/frontend/
-├── app/                          # Páginas Next.js (App Router)
-│   ├── dashboard/                # Página do dashboard principal
+├── app/                          # Next.js pages (App Router)
+│   ├── dashboard/                # Main dashboard page
 │   │   └── page.tsx
-│   ├── login/                    # Tela de login
+│   ├── login/                    # Login screen
 │   │   └── page.tsx
-│   ├── relatorios/               # Página de relatórios e histórico
+│   ├── relatorios/               # Reports and history page
 │   │   └── page.tsx
-│   ├── layout.tsx                # Layout principal
-│   ├── page.tsx                  # Página inicial (redireciona para login)
-│   └── globals.css               # Estilos globais
-├── components/                   # Componentes React
+│   ├── layout.tsx                # Main layout
+│   ├── page.tsx                  # Home page (redirects to login)
+│   └── globals.css               # Global styles
+├── components/                   # React components
 │   └── Dashboard/
-│       ├── RealtimeChart.tsx    # Gráfico de acessos em tempo real
-│       ├── DeviceMonitor.tsx     # Monitoramento de dispositivos
-│       └── AccessLogsTable.tsx  # Tabela de logs de acesso
-├── services/                     # Serviços de comunicação
-│   ├── ApiService.ts             # Cliente HTTP para API REST
-│   └── MQTTService.ts            # Cliente MQTT para tempo real
-├── hooks/                        # Hooks customizados
-│   ├── useRealtimeData.ts        # Hook para dados MQTT em tempo real
-│   └── useAccessLogs.ts          # Hook para logs de acesso
-├── utils/                        # Utilitários
-│   └── dateFormatter.ts          # Formatação de datas
-├── config/                       # Configurações e constantes
-│   └── constants.ts              # Constantes da aplicação
-├── types/                        # Definições de tipos TypeScript
+│       ├── RealtimeChart.tsx    # Real-time access chart
+│       ├── DeviceMonitor.tsx     # Device monitoring
+│       └── AccessLogsTable.tsx  # Access log table
+├── services/                     # Communication services
+│   ├── ApiService.ts             # HTTP client for REST API
+│   └── MQTTService.ts            # MQTT client for real-time data
+├── hooks/                        # Custom hooks
+│   ├── useRealtimeData.ts        # Hook for real-time MQTT data
+│   └── useAccessLogs.ts          # Hook for access logs
+├── utils/                        # Utilities
+│   └── dateFormatter.ts          # Date formatting
+├── config/                       # Configuration and constants
+│   └── constants.ts              # Application constants
+├── types/                        # TypeScript type definitions
 │   └── index.ts
-├── .env.local                    # Variáveis de ambiente (não commitado)
-├── env.example                   # Exemplo de variáveis de ambiente
+├── .env.local                    # Environment variables (not committed)
+├── env.example                   # Environment variable example
 └── package.json
 ```
 
-## Páginas
+## Pages
 
 ### `/login`
-Tela de autenticação do sistema. Por enquanto, redireciona automaticamente para o dashboard sem validação.
+System authentication screen. For now, it automatically redirects to the dashboard without validation.
 
 ### `/dashboard`
-Dashboard principal com:
-- **Gráfico em Tempo Real**: Visualização de acessos agrupados por minuto
-- **Monitoramento de Dispositivos**: Status dos ESP32 conectados
-- **Tabela de Logs**: Histórico recente de acessos
+Main dashboard featuring:
+- **Real-Time Chart**: Access events grouped by minute
+- **Device Monitoring**: Status of connected ESP32 units
+- **Log Table**: Recent access history
 
 ### `/relatorios`
-Página de relatórios com:
-- **Filtros Avançados**: Por sala, tipo de evento, e período
-- **Tabela Completa**: Todos os logs de acesso com informações detalhadas
+Reports page featuring:
+- **Advanced Filters**: By room, event type, and period
+- **Full Table**: All access logs with detailed information
 
-## Componentes Principais
+## Main Components
 
 ### RealtimeChart
-Gráfico de barras que exibe acessos em tempo real recebidos via MQTT, agrupados por minuto. Mostra:
-- Acessos Permitidos (verde)
-- Acessos Negados (vermelho)
-- Erros (amarelo)
+Bar chart showing real-time access events received via MQTT, grouped by minute. Shows:
+- Granted Access (green)
+- Denied Access (red)
+- Errors (yellow)
 
 ### DeviceMonitor
-Lista de dispositivos ESP32 conectados ao sistema, mostrando:
-- Nome e ID do dispositivo
-- Status (Online/Offline/Erro)
-- Sala associada
-- Última atualização
+List of ESP32 devices connected to the system, showing:
+- Device name and ID
+- Status (Online/Offline/Error)
+- Associated room
+- Last update
 
 ### AccessLogsTable
-Tabela completa de logs de acesso com colunas:
-- Sala
-- Atividade (Entrada/Saída)
-- Equipe
-- Responsável
-- Número de Pessoas
-- Entrada
-- Saída
-- Duração
+Full access log table with columns:
+- Room
+- Activity (Entry/Exit)
+- Team
+- Responsible party
+- Number of people
+- Entry time
+- Exit time
+- Duration
 
-## Tecnologias
+## Technologies
 
-- **Next.js 14+**: Framework React com App Router
-- **TypeScript**: Tipagem estática
-- **Tailwind CSS**: Estilização utilitária
-- **Recharts**: Biblioteca de gráficos
-- **MQTT.js**: Cliente MQTT para comunicação em tempo real
+- **Next.js 14+**: React framework with App Router
+- **TypeScript**: Static typing
+- **Tailwind CSS**: Utility-first styling
+- **Recharts**: Charting library
+- **MQTT.js**: MQTT client for real-time communication
 
-## Integração
+## Integration
 
-O frontend se comunica com:
+The frontend communicates with:
 
 ### Backend API (REST)
-- `GET /api/access/logs` - Buscar logs de acesso
-- `GET /api/access/stats` - Buscar estatísticas
-- `GET /api/devices` - Listar dispositivos
+- `GET /api/access/logs` - Fetch access logs
+- `GET /api/access/stats` - Fetch statistics
+- `GET /api/devices` - List devices
 
 ### MQTT Broker
-- **Tópico de Subscrição**: `access/response/+`
-- **Protocolo**: WebSocket Secure (WSS) ou WebSocket (WS)
-- **Formato**: JSON
+- **Subscription Topic**: `access/response/+`
+- **Protocol**: WebSocket Secure (WSS) or WebSocket (WS)
+- **Format**: JSON
 
-## Dados em Tempo Real vs Históricos
+## Real-Time vs Historical Data
 
-### Tempo Real (MQTT)
-- Eventos recebidos via MQTT
-- Atualização instantânea
-- Últimos 100 eventos mantidos em memória
-- Usado no gráfico em tempo real
+### Real-Time (MQTT)
+- Events received via MQTT
+- Instant updates
+- Last 100 events kept in memory
+- Used in the real-time chart
 
-### Históricos (API REST)
-- Dados do banco de dados PostgreSQL
-- Filtros e paginação
-- Usado nas tabelas de relatórios
+### Historical (REST API)
+- Data from the PostgreSQL database
+- Filters and pagination
+- Used in report tables
 
-## Scripts Disponíveis
+## Available Scripts
 
-- `npm run dev` - Inicia servidor de desenvolvimento na porta 3001
-- `npm run build` - Gera build de produção
-- `npm start` - Inicia servidor de produção na porta 3001
-- `npm run lint` - Executa o linter
+- `npm run dev` - Starts the development server on port 3001
+- `npm run build` - Generates a production build
+- `npm start` - Starts the production server on port 3001
+- `npm run lint` - Runs the linter
 
-## Desenvolvimento
+## Development
 
-### Estrutura de Dados
+### Data Structure
 
-Os eventos MQTT seguem o formato:
+MQTT events follow this format:
 ```typescript
 interface AccessEvent {
   request_id: string;
@@ -223,15 +223,15 @@ interface AccessEvent {
 }
 ```
 
-### Hooks Customizados
+### Custom Hooks
 
-- **useRealtimeData**: Gerencia conexão MQTT e eventos em tempo real
-- **useAccessLogs**: Busca e filtra logs de acesso do backend
+- **useRealtimeData**: Manages the MQTT connection and real-time events
+- **useAccessLogs**: Fetches and filters access logs from the backend
 
-## Licença
+## License
 
 ISC
 
-## Desenvolvido por
+## Developed by
 
 IoTrain - Inteli

@@ -1,89 +1,89 @@
-# Sistema de Controle de Acesso - Backend
+# Access Control System - Backend
 
-Sistema de backend para controle de acesso em estações de trem utilizando ESP32, RFID e PostgreSQL.
+Backend system for access control at train stations using ESP32, RFID, and PostgreSQL.
 
-## Requisitos
+## Requirements
 
 - Node.js 16+ 
 - PostgreSQL 12+
-- npm ou yarn
+- npm or yarn
 
-## Instalação
+## Installation
 
-1. Clone o repositório e navegue até a pasta backend:
+1. Clone the repository and navigate to the backend folder:
 ```bash
 cd src/backend
 ```
 
-2. Instale as dependências:
+2. Install the dependencies:
 ```bash
 npm install
 ```
 
-3. Configure as variáveis de ambiente:
-- Copie o arquivo `.env.example` para `.env`
-- Preencha as credenciais do seu banco de dados PostgreSQL
+3. Configure the environment variables:
+- Copy the `.env.example` file to `.env`
+- Fill in your PostgreSQL database credentials
 
 ```bash
 cp .env.example .env
 ```
 
-4. Configure o banco de dados:
+4. Set up the database:
 ```bash
 npm run db:setup
 ```
 
-Este comando vai criar todas as tabelas e preencher com dados de teste.
+This command creates all the tables and fills them with test data.
 
-## Scripts Disponíveis
+## Available Scripts
 
-- `npm start` - Inicia o servidor em modo produção
-- `npm run dev` - Inicia o servidor em modo desenvolvimento com auto-reload
-- `npm run db:create` - Cria apenas as tabelas no banco de dados
-- `npm run db:seed` - Preenche as tabelas com dados fictícios
-- `npm run db:setup` - Executa db:create e db:seed em sequência
+- `npm start` - Starts the server in production mode
+- `npm run dev` - Starts the server in development mode with auto-reload
+- `npm run db:create` - Creates only the database tables
+- `npm run db:seed` - Fills the tables with mock data
+- `npm run db:setup` - Runs db:create and db:seed in sequence
 
-## Estrutura do Projeto
+## Project Structure
 
 ```
 src/backend/
 ├── config/
 │   ├── database/
 │   │   ├── sql/
-│   │   │   ├── schema/      # Scripts de criação de tabelas
-│   │   │   └── seeds/       # Dados fictícios para teste
-│   │   ├── db_config.js     # Configuração do PostgreSQL
-│   │   ├── create_tables.js # Script para criar tabelas
-│   │   └── fill_tables.js   # Script para popular dados
-│   └── constants.js         # Constantes da aplicação
+│   │   │   ├── schema/      # Table creation scripts
+│   │   │   └── seeds/       # Mock data for testing
+│   │   ├── db_config.js     # PostgreSQL configuration
+│   │   ├── create_tables.js # Script to create tables
+│   │   └── fill_tables.js   # Script to populate data
+│   └── constants.js         # Application constants
 ├── controllers/
-│   └── AccessController.js  # Controller de acesso
+│   └── AccessController.js  # Access controller
 ├── services/
-│   ├── AccessValidationService.js  # Lógica de validação
-│   └── LogService.js               # Lógica de logging
+│   ├── AccessValidationService.js  # Validation logic
+│   └── LogService.js               # Logging logic
 ├── repositories/
-│   ├── WorkerRepository.js         # Acesso a dados de workers
-│   ├── ServiceRepository.js        # Acesso a dados de services
-│   └── AuthorizationRepository.js  # Acesso a dados de autorizações
+│   ├── WorkerRepository.js         # Worker data access
+│   ├── ServiceRepository.js        # Service data access
+│   └── AuthorizationRepository.js  # Authorization data access
 ├── routes/
-│   ├── index.js             # Centralizador de rotas
-│   └── access.js            # Rotas de acesso
+│   ├── index.js             # Route aggregator
+│   └── access.js            # Access routes
 ├── middlewares/
-│   └── errorHandler.js      # Tratamento de erros
+│   └── errorHandler.js      # Error handling
 ├── utils/
-│   └── dateFormatter.js     # Formatação de datas
-├── server.js                # Arquivo principal
+│   └── dateFormatter.js     # Date formatting
+├── server.js                # Main file
 ├── package.json
 └── .env
 ```
 
-## Endpoint Principal
+## Main Endpoint
 
 ### POST /api/access/verify
 
-Endpoint para verificação de acesso pelo ESP32.
+Endpoint used by the ESP32 to verify access.
 
-**Formato da requisição:**
+**Request format:**
 ```json
 {
   "request_id": "SALA01_E_1729450234567_A1B2C3D4_00001",
@@ -102,40 +102,40 @@ Endpoint para verificação de acesso pelo ESP32.
 }
 ```
 
-**Formato da resposta:**
+**Response format:**
 ```json
 {
   "request_id": "SALA01_E_1729450234567_A1B2C3D4_00001",
   "response_type": "success",
   "access_granted": true,
   "message": {
-    "line1": "Acesso permitido",
-    "line2": "Bem-vindo!"
+    "line1": "Access granted",
+    "line2": "Welcome!"
   },
   "display_duration": 3000,
   "message_hash": "d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0f9e8d7c6b5a4f3e2d1c0b9a8f7e6d5c4"
 }
 ```
 
-## Dados de Teste
+## Test Data
 
-O sistema vem pré-configurado com os seguintes dados de teste:
+The system comes pre-configured with the following test data:
 
 ### Workers:
-- RFID: A1B2, Senha: 1234, Nome: Agent Smith
-- RFID: B5C607E8, Senha: 5678, Nome: Ada Lovelace
-- RFID: 0123456789ABC012, Senha: abcd, Nome: Neo
+- RFID: A1B2, Password: 1234, Name: Agent Smith
+- RFID: B5C607E8, Password: 5678, Name: Ada Lovelace
+- RFID: 0123456789ABC012, Password: abcd, Name: Neo
 
-### Serviços:
-- Manutenção Elétrica (SALA_A, SEG/QUA/SEX, 08:00-12:00)
-- Limpeza Técnica (SALA_B, TER/QUI, 14:00-17:00)
-- Reunião Técnica (SALA_C, SEG-SEX, 09:00-11:00)
+### Services:
+- Electrical Maintenance (SALA_A, MON/WED/FRI, 08:00-12:00)
+- Technical Cleaning (SALA_B, TUE/THU, 14:00-17:00)
+- Technical Meeting (SALA_C, MON-FRI, 09:00-11:00)
 
-## Desenvolvimento
+## Development
 
-Para desenvolvimento local com auto-reload:
+For local development with auto-reload:
 ```bash
 npm run dev
 ```
 
-O servidor iniciará na porta definida no .env (padrão: 3000).
+The server will start on the port defined in `.env` (default: 3000).
