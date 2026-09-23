@@ -10,7 +10,7 @@
 
 ## IoTrain
 
-## 👨‍🎓 Integrantes: 
+## 👨‍🎓 Team Members: 
 <div align="center">
   <table>
     <tr>
@@ -64,85 +64,85 @@
 
 
 
-## 👩‍🏫 Professores:
-### Orientador(a) 
+## 👩‍🏫 Professors:
+### Advisor 
 - [Fabiana Martins](https://www.linkedin.com/in/fabiana-martins-de-oliveira-8993b0b2/)
-### Instrutores
-- Computação: [Bryan Ferreira](https://www.linkedin.com/in/bryan-kano/)
+### Instructors
+- Computer Science: [Bryan Ferreira](https://www.linkedin.com/in/bryan-kano/)
 - Design: [Guilherme Cestari](https://www.linkedin.com/in/gui-cestari/)
-- Liderança: [Laíza Ribeiro](https://www.linkedin.com/in/laizaribeiro/)
-- Matemática / Física: [Fernando Pizzo](https://www.linkedin.com/in/fernando-pizzo-208b526a/)
-- Negócios: [Pedro Teberga](https://www.linkedin.com/in/pedroteberga/)
+- Leadership: [Laíza Ribeiro](https://www.linkedin.com/in/laizaribeiro/)
+- Math / Physics: [Fernando Pizzo](https://www.linkedin.com/in/fernando-pizzo-208b526a/)
+- Business: [Pedro Teberga](https://www.linkedin.com/in/pedroteberga/)
 
-## 📜 Descrição
+## 📜 Description
 
-O presente projeto consiste no desenvolvimento de um sistema de autenticação e controle de acesso voltado para salas restritas localizadas em ambientes operacionais da TIC Trens, com o objetivo de aumentar a segurança, rastreabilidade e confiabilidade no acesso a áreas sensíveis da infraestrutura ferroviária. A solução foi concebida a partir da integração entre hardware embarcado, sistemas de autenticação e plataformas de monitoramento digital, buscando alinhar-se às exigências de controle operacional e segurança institucional.
+This project consists of the development of an authentication and access control system designed for restricted rooms located in TIC Trens' operational environments, with the goal of increasing security, traceability, and reliability of access to sensitive areas of the railway infrastructure. The solution was conceived by integrating embedded hardware, authentication systems, and digital monitoring platforms, aiming to align with operational control and institutional security requirements.
 
-No nível físico, o sistema utiliza um microcontrolador ESP32 como unidade central de processamento, responsável por gerenciar os dispositivos de entrada, saída e comunicação. O mecanismo principal de autenticação baseia-se na utilização de cartões RFID, permitindo a identificação rápida e sem contato dos usuários autorizados. Para reforçar a segurança, o sistema também incorpora um método de autenticação por senha, inserida por meio de um teclado matricial, configurando um modelo de autenticação multifatorial. O feedback ao usuário ocorre por meio de um display LCD, além de sinais visuais e sonoros emitidos por um LED RGB e um buzzer, que indicam estados como acesso permitido, acesso negado ou erro de leitura.
+At the physical level, the system uses an ESP32 microcontroller as the central processing unit, responsible for managing input, output, and communication devices. The primary authentication mechanism is based on RFID cards, enabling fast, contactless identification of authorized users. To reinforce security, the system also incorporates password authentication entered via a matrix keypad, forming a multi-factor authentication model. User feedback is provided through an LCD display, along with visual and audio signals from an RGB LED and a buzzer, indicating states such as access granted, access denied, or read error.
 
-Inicialmente, o sistema foi montado em um ambiente prototipado, utilizando protoboard para validação das conexões elétricas e do funcionamento dos componentes. Após essa etapa, as conexões foram soldadas e os módulos devidamente organizados e fixados em uma case física, garantindo maior robustez, segurança mecânica e adequação ao uso em campo. A montagem final priorizou a disposição correta dos componentes, a proteção das conexões e a ergonomia de uso, considerando o fluxo de interação do usuário com o dispositivo.
+Initially, the system was assembled in a prototype environment using a breadboard to validate the electrical connections and component functionality. After this stage, the connections were soldered and the modules properly organized and mounted in a physical case, ensuring greater robustness, mechanical safety, and suitability for field use. The final assembly prioritized correct component placement, connection protection, and usage ergonomics, taking into account the user's interaction flow with the device.
 
-Além do controle físico de acesso, o projeto contempla um sistema de monitoramento digital, responsável por registrar e visualizar os eventos de autenticação. Esses registros incluem informações como tentativas de acesso, horários e status das validações. Os dados são apresentados em um dashboard interativo, que permite a análise dos acessos de forma centralizada, oferecendo suporte à tomada de decisão e à auditoria de segurança. Esse painel amplia a visibilidade do sistema, permitindo identificar padrões de uso, possíveis falhas operacionais e tentativas indevidas de acesso.
+In addition to physical access control, the project includes a digital monitoring system responsible for logging and displaying authentication events. These records include information such as access attempts, timestamps, and validation status. The data is presented on an interactive dashboard that enables centralized analysis of access events, supporting decision-making and security audits. This panel expands system visibility, making it possible to identify usage patterns, potential operational failures, and unauthorized access attempts.
 
-Como extensão do projeto, foi iniciada a implementação de um módulo de visão computacional, cujo objetivo seria realizar a validação visual dos acessos, associando imagens ou registros visuais aos logs gerados pelo sistema. Essa funcionalidade buscaria aumentar ainda mais a confiabilidade do controle de acesso, adicionando uma camada adicional de verificação. No entanto, devido a limitações de tempo e integração, essa etapa não pôde ser completamente conectada ao sistema principal, permanecendo como um desenvolvimento parcial e conceitual.
+As an extension of the project, implementation began on a computer vision module intended to perform visual validation of access events, associating images or visual records with the logs generated by the system. This feature aimed to further increase the reliability of access control by adding an extra verification layer. However, due to time and integration constraints, this stage could not be fully connected to the main system and remains a partial, conceptual development.
 
-De forma geral, o projeto demonstra a viabilidade da integração entre sistemas embarcados, métodos de autenticação e plataformas de monitoramento, aplicados a um contexto real de segurança ferroviária. A solução proposta contribui para o fortalecimento do controle de acesso em ambientes críticos, ao mesmo tempo em que oferece uma base sólida para futuras expansões, como a integração completa da visão computacional e o aprimoramento das funcionalidades de análise e gestão dos dados de acesso.
+Overall, the project demonstrates the feasibility of integrating embedded systems, authentication methods, and monitoring platforms, applied to a real-world railway security context. The proposed solution strengthens access control in critical environments, while providing a solid foundation for future expansion, such as the full integration of computer vision and enhanced access data analysis and management features.
 
-[Vídeo Demonstrativo](https://www.youtube.com/watch?v=zPGXsDBjmhk)
+[Demo Video](https://www.youtube.com/watch?v=zPGXsDBjmhk)
 
 
-## 📁 Estrutura de pastas
+## 📁 Folder Structure
 
-Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
+Among the files and folders present in the project root, we define:
 
-- <b>assets</b>: aqui estão os arquivos relacionados a parte gráfica do projeto, ou seja, as imagens e vídeos que os representam (O logo do grupo pode ser adicionado nesta pasta).
+- <b>assets</b>: contains files related to the graphical part of the project, i.e., the images and videos that represent it (the group logo can be added to this folder).
 
-- <b>document</b>: aqui estão todos os documentos do projeto, incluindo o manual de instruções (se aplicável). Há também uma pasta denominada <b>outros</b> onde estão presentes outros documentos complementares.
+- <b>document</b>: contains all project documents, including the instruction manual (if applicable). There is also a folder called <b>outros</b> (others) containing supplementary documents.
 
-- <b>src</b>: Todo o código fonte criado para o desenvolvimento do projeto, incluindo firmware, notebooks, backend e frontend, se aplicáveis.
+- <b>src</b>: all source code created for the project's development, including firmware, notebooks, backend, and frontend, as applicable.
 
-- <b>README.md</b>: arquivo que serve como guia e explicação geral sobre o projeto (o mesmo que você está lendo agora).
+- <b>README.md</b>: file that serves as a guide and general explanation of the project (the one you are reading now).
 
-## 🔧 Instalação
+## 🔧 Installation
 
-Para a correta execução e testes do projeto, é necessário que o ambiente de desenvolvimento esteja devidamente configurado, contemplando tanto o sistema embarcado quanto as camadas de software da solução.
+For the correct execution and testing of the project, the development environment must be properly set up, covering both the embedded system and the software layers of the solution.
 
-Como pré-requisitos, são utilizados os seguintes ambientes e ferramentas:
+The following environments and tools are used as prerequisites:
 
-- **Arduino IDE**, para desenvolvimento, compilação e gravação do firmware no ESP32, bem como a instalação das bibliotecas necessárias ao funcionamento dos módulos (RFID, LCD, teclado matricial, entre outros);
-- **Visual Studio Code**, como editor de código para o desenvolvimento das camadas de backend e frontend;
-- **Node.js**, utilizado para a execução do servidor backend e do frontend da aplicação, com gerenciamento de dependências por meio do **npm**.
+- **Arduino IDE**, for developing, compiling, and flashing firmware to the ESP32, as well as installing the libraries required for the modules (RFID, LCD, matrix keypad, among others);
+- **Visual Studio Code**, as the code editor for backend and frontend development;
+- **Node.js**, used to run the application's backend server and frontend, with dependency management via **npm**.
 
-A instalação das dependências do projeto é realizada via **npm**, executando-se o comando `npm install` nas pastas correspondentes ao **backend** e ao **frontend**, garantindo a correta instalação das bibliotecas utilizadas em cada camada. Da mesma forma, as bibliotecas necessárias ao funcionamento do firmware são instaladas diretamente pela **Arduino IDE**, conforme descrito no manual.
+Project dependencies are installed via **npm**, by running the `npm install` command in the corresponding **backend** and **frontend** folders, ensuring the correct installation of the libraries used in each layer. Likewise, the libraries required for the firmware are installed directly via the **Arduino IDE**, as described in the manual.
 
-O procedimento completo de configuração do ambiente, incluindo:
-- versões das ferramentas utilizadas,
-- instalação das bibliotecas,
-- configuração do ESP32,
-- e execução da aplicação,
+The complete environment setup procedure, including:
+- tool versions used,
+- library installation,
+- ESP32 configuration,
+- and running the application,
 
-está detalhadamente descrito no **Manual de Instruções** do projeto, que deve ser consultado para a reprodução correta da solução.
+is described in detail in the project's **Instruction Manual**, which should be consulted to correctly reproduce the solution.
 
-## 📘 Manual de Instruções
+## 📘 Instruction Manual
 
-Para replicar todo o projeto **Argos**, incluindo instalação, configuração dos dispositivos, execução do backend/frontend e integração completa do sistema, consulte o manual de instruções presente na pasta `document`.
+To replicate the entire **Argos** project, including installation, device configuration, running the backend/frontend, and full system integration, refer to the instruction manual in the `document` folder.
 
-➡️ **Acesse o Manual de Instruções:**  
+➡️ **Access the Instruction Manual:**  
 [document/manual_de_instrucoes.pdf](document/Manual%20de%20Instruções%20-%20IoTrain.pdf)
 
-## 🗃 Histórico de lançamentos
+## 🗃 Release History
 
-* 0.5.0 - 19/12/2025 - Documentação final e integração entre autenticação e visão computacional.
+* 0.5.0 - 12/19/2025 - Final documentation and integration between authentication and computer vision.
     
-* 0.4.0 - 05/12/2025 - Documentação respectiva ao protótipo final, testes e fluxo de funcionamento, além de término do dashboard.
+* 0.4.0 - 12/05/2025 - Documentation on the final prototype, testing, and operating flow, plus completion of the dashboard.
     
-* 0.3.0 - 19/11/2025 - Documentação de requisitos (RF e RNF) e implementação final do protocolo MQTT.
+* 0.3.0 - 11/19/2025 - Requirements documentation (functional and non-functional) and final implementation of the MQTT protocol.
     
-* 0.2.0 - 07/11/2025 - Documentação inicial do sistema físico e substituição do HTTP e MQTT.
+* 0.2.0 - 11/07/2025 - Initial documentation of the physical system and replacement of HTTP with MQTT.
     
-* 0.1.0 - 24/10/2025 - Documentação do protótipo offline e construção dos fundamentos do circuito via wokwi.
+* 0.1.0 - 10/24/2025 - Documentation of the offline prototype and construction of the circuit fundamentals via Wokwi.
     
 
-## 📋 Licença/License
+## 📋 License
 
 <a href="https://github.com/Inteli-College/2025-2B-T18-IN02-G04.git">IoTrain</a> © 2025 by <a href="https://github.com/Inteli-College/2025-2B-T18-IN02-G04.git">INTELI, Bruno Martins, Guilherme Valença, Isaac Santos, Jaime Andrade, Richard Alves, Victor Garcia, Victor Grycajuk</a> is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;">
