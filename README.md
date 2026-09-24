@@ -6,7 +6,15 @@
 
 <br>
 
-# Argos
+# Argos - Computer Vision Access Monitoring System
+
+> A railway-security prototype combining ESP32 multi-factor access control with real-time computer-vision occupancy monitoring.
+
+## My Role
+
+I owned the computer-vision subsystem end to end: YOLOv8m detection, CLAHE low-light preprocessing, ByteTrack tracking, occupancy counting, unauthorized-person detection, and backend integration.
+
+[Read the full contribution breakdown](#my-contribution)
 
 ## IoTrain
 
